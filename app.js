@@ -199,3 +199,57 @@ if(typeof ResizeObserver==='function'){
  const collectionsSizeObserver=new ResizeObserver(syncLatestCollectionsHeight);
  collectionsSizeObserver.observe(poojaHeightSource);
 }
+
+// Jewellery anchors use source-image pixels, not percentages of the cropped panel.
+// Keep the campaign, image crop and label sizes unchanged at every breakpoint.
+const lookPhoto=document.querySelector('.look-photo');
+const lookModel=lookPhoto.querySelector('.look-model');
+const lookAnchors=[
+ ['earrings',506,300],
+ ['necklace',543,484],
+ ['bangles',538,773],
+ ['bracelet',666,791],
+ ['rings',731,887]
+];
+function alignLookPointers(){
+ if(!lookModel.naturalWidth||!lookModel.naturalHeight)return;
+ const imageBox=lookModel.getBoundingClientRect();
+ if(!imageBox.width||!imageBox.height)return;
+ const scale=Math.max(imageBox.width/lookModel.naturalWidth,imageBox.height/lookModel.naturalHeight);
+ const position=getComputedStyle(lookModel).objectPosition.split(' ').map(value=>parseFloat(value)/100);
+ const imageLeft=imageBox.left+(imageBox.width-lookModel.naturalWidth*scale)*position[0];
+ const imageTop=imageBox.top+(imageBox.height-lookModel.naturalHeight*scale)*position[1];
+ lookPhoto.querySelectorAll('.look-leaders,.look-mobile-leaders').forEach(svg=>{
+  const box=svg.getBoundingClientRect();
+  if(!box.width||!box.height)return;
+  const leaders=[];
+  lookAnchors.forEach(([piece,x,y])=>{
+   const label=lookPhoto.querySelector('.look-'+piece).getBoundingClientRect();
+   if(!label.width||!label.height)return;
+   const targetX=imageLeft+x*scale,targetY=imageTop+y*scale;
+   const labelOnLeft=label.left+label.width/2<targetX;
+   const startX=((labelOnLeft?label.right:label.left)-box.left)/box.width*100;
+   const startY=(label.top+label.height/2-box.top)/box.height*100;
+   const endX=(targetX-box.left)/box.width*100;
+   const endY=(targetY-box.top)/box.height*100;
+   const elbowX=startX+(endX-startX)*.35;
+   const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+   path.setAttribute('d',`M${startX} ${startY}H${elbowX}L${endX} ${endY}`);
+   path.setAttribute('fill','none');
+   const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+   dot.setAttribute('cx',endX);dot.setAttribute('cy',endY);dot.setAttribute('r','.55');
+   dot.setAttribute('fill','#f5c574');dot.setAttribute('stroke','#fff2cc');dot.setAttribute('stroke-width','.15');
+   leaders.push(path,dot);
+  });
+  svg.replaceChildren(...leaders);
+ });
+}
+lookModel.addEventListener('load',alignLookPointers);
+window.addEventListener('resize',alignLookPointers);
+if(typeof ResizeObserver==='function'){
+ const lookSizeObserver=new ResizeObserver(alignLookPointers);
+ lookSizeObserver.observe(lookPhoto);
+ lookPhoto.querySelectorAll('.look-hotspot').forEach(label=>lookSizeObserver.observe(label));
+}
+if(document.fonts)document.fonts.ready.then(alignLookPointers);
+alignLookPointers();
