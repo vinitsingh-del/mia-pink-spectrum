@@ -3,10 +3,74 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f8066b">
 <title>Lightscapes by Mia</title><meta name="description" content="Lightscapes by Mia. Colour your celebration and shop the festive jewellery look.">
+<style>
+.mia-preloader{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 75% 90%,#ff997d 0,transparent 65%),linear-gradient(135deg,#e60062,#ff2672 65%,#ff617b);color:#fff7ef;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .42s ease,visibility .42s;isolation:isolate}
+html.mia-loading{overflow:hidden}html.mia-loading .mia-preloader{opacity:1;visibility:visible;pointer-events:auto;transition:none}
+.mia-preloader-content{display:flex;flex-direction:column;align-items:center;text-align:center;width:min(84vw,360px);padding:24px;position:relative}
+.mia-preloader-logo{width:89px;height:94px;object-fit:contain;margin-bottom:18px;filter:drop-shadow(0 0 18px #fff7ef55)}
+.mia-preloader-diya{width:124px;height:106px;overflow:visible;fill:none;stroke:#ffe2a1;stroke-width:1.3;flex-shrink:0}
+.mia-preloader-flame{transform-box:fill-box;transform-origin:50% 100%;animation:mia-loader-flicker .72s ease-in-out infinite alternate}
+.mia-preloader-halo{animation:mia-loader-glow 1.8s ease-in-out infinite alternate;transform-origin:60px 39px}
+.mia-preloader-title{font:400 clamp(27px,5.6vw,34px)/1.15 "Times New Roman",Times,serif;letter-spacing:-.6px;margin:14px 0 12px}
+.mia-preloader-caption{font:500 10px/1.6 Arial,Helvetica,sans-serif;letter-spacing:2.3px;margin:0;color:#fff7ef}
+.mia-preloader-track{width:112px;height:2px;background:#fff7ef40;overflow:hidden;border-radius:2px;margin-top:25px}
+.mia-preloader-track:after{content:"";display:block;width:55%;height:100%;background:linear-gradient(90deg,transparent,#ffe2a1,#fff7ef,transparent);animation:mia-loader-shimmer 1.35s ease-in-out infinite}
+.mia-preloader-spark{position:absolute;width:7px;height:7px;background:#fff3c8;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:mia-loader-sparkle 1.8s ease-in-out infinite alternate;pointer-events:none}
+.mia-preloader-spark:nth-child(1){left:16%;top:38%;animation-delay:-.9s}.mia-preloader-spark:nth-child(2){right:16%;top:29%;width:11px;height:11px;animation-delay:-.3s}.mia-preloader-spark:nth-child(3){right:22%;top:61%;animation-delay:-1.4s}
+@keyframes mia-loader-flicker{0%{transform:rotate(-3deg) scale(.96,1);opacity:.88}40%{transform:rotate(2deg) scale(1.04,1.1);opacity:1}100%{transform:rotate(-1deg) scale(.97,.93);opacity:.95}}
+@keyframes mia-loader-glow{from{opacity:.4;transform:scale(.85)}to{opacity:.85;transform:scale(1.15)}}
+@keyframes mia-loader-shimmer{from{transform:translateX(-110%)}to{transform:translateX(290%)}}
+@keyframes mia-loader-sparkle{from{opacity:.25;transform:scale(.65)}to{opacity:1;transform:scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.mia-preloader,.mia-preloader *,.mia-preloader *:after{animation:none!important;transition:none!important}}
+</style>
+<script>
+// Independent of the shop script: always release the page, even if an asset fails.
+(()=>{
+ const root=document.documentElement,start=performance.now();let dismissed=false;
+ root.classList.add('mia-loading');
+ const guard=setTimeout(()=>dismiss(true),4000);
+ function dismiss(immediate=false){
+  if(dismissed)return;
+  dismissed=true;clearTimeout(guard);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(()=>{
+   root.classList.remove('mia-loading');
+   document.getElementById('mia-preloader')?.setAttribute('aria-hidden','true');
+   document.getElementById('top')?.removeAttribute('inert');
+  },immediate||reduced?0:Math.max(0,1100-(performance.now()-start)));
+ }
+ document.addEventListener('DOMContentLoaded',()=>{
+  if(dismissed)return;
+  document.getElementById('top')?.setAttribute('inert','');
+  const hero=document.querySelector('.hero-art img');
+  const ready=()=>{if(hero?.decode)hero.decode().catch(()=>{}).then(()=>dismiss());else dismiss()};
+  if(!hero||hero.complete)ready();
+  else{hero.addEventListener('load',ready,{once:true});hero.addEventListener('error',()=>dismiss(),{once:true})}
+ },{once:true});
+ window.addEventListener('pageshow',event=>{if(event.persisted)dismiss(true)});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape')dismiss(true)});
+})();
+</script>
 <link rel="preload" as="image" href="assets/hero-desktop.png" media="(min-width: 701px)"><link rel="preload" as="image" href="assets/hero-mobile.png" media="(max-width: 700px)">
 <link rel="stylesheet" href="styles.css"><script src="app.js?v=beecf14" defer></script>
 </head>
-<body><div class="site" id="top">
+<body>
+<div class="mia-preloader" id="mia-preloader" role="status" aria-label="Mia is lighting up your Diwali. Loading the collection.">
+ <div class="mia-preloader-content" aria-hidden="true">
+  <i class="mia-preloader-spark"></i><i class="mia-preloader-spark"></i><i class="mia-preloader-spark"></i>
+  <img class="mia-preloader-logo" src="assets/mia-white-logo.png" width="89" height="94" alt="" fetchpriority="high">
+  <svg class="mia-preloader-diya" viewBox="0 0 120 106" aria-hidden="true">
+   <defs><radialGradient id="mia-loader-light"><stop stop-color="#fff5c9" stop-opacity=".7"/><stop offset="1" stop-color="#ffe2a1" stop-opacity="0"/></radialGradient><linearGradient id="mia-loader-gold" x2="0" y2="1"><stop stop-color="#ffe2a1"/><stop offset="1" stop-color="#e9b961"/></linearGradient></defs>
+   <circle class="mia-preloader-halo" cx="60" cy="39" r="37" fill="url(#mia-loader-light)" stroke="none"/>
+   <g class="mia-preloader-flame"><path d="M60 11C58 25 48 32 49 43C49 58 71 58 71 43C71 33 64 24 60 11Z" fill="#ffe2a1" stroke="none"/><path d="M60 31C59 38 54 42 55 47C56 55 66 54 66 47C66 42 62 36 60 31Z" fill="#fffaf0" stroke="none"/></g>
+   <ellipse cx="60" cy="64" rx="45" ry="8" fill="#e9b961" fill-opacity=".14"/><path d="M15 64Q24 93 60 93Q96 93 105 64Q60 80 15 64Z" fill="url(#mia-loader-gold)"/><path d="M28 77Q60 99 92 77M45 96H75M50 100H70"/><path d="M60 64V58" stroke="#fff7ef" stroke-width="2"/>
+  </svg>
+  <p class="mia-preloader-title">Lightscapes by Mia</p>
+  <p class="mia-preloader-caption">LIGHTING UP YOUR DIWALI</p>
+  <span class="mia-preloader-track"></span>
+ </div>
+</div>
+<div class="site" id="top">
 <header class="header shell">
 <button class="icon-button menu-toggle" data-action="menu" aria-label="Open menu" aria-expanded="false"><svg><use href="#menu"/></svg></button>
 <a class="brand" href="#top" aria-label="Mia by Tanishq home"><img src="assets/mia-company-logo.svg" width="80" height="80" alt="Mia by Tanishq" fetchpriority="high"></a>
