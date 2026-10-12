@@ -778,15 +778,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 @media(max-width:350px){.cro-section{--cro-height:570px;padding:12px}.cro-heading h2{font-size:29px}.cro-coin-copy h3{font-size:17px}.cro-coin-copy .cro-button{min-width:115px;font-size:10px}.cro-set-card{padding:11px}.cro-set-card h3{font-size:23px}}
 
-/* Hero product composition: transparent source assets, original hero dimensions retained. */
+/* Jewellery positions share the original artwork coordinate system. */
 .hero-product-layers{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.hero-jewel{position:absolute;display:block;object-fit:contain;filter:drop-shadow(2px 5px 3px #75320725);transform-origin:50% 80%}
-.hero-jewel-earrings{left:49%;top:37%;width:16%;height:38%}
-.hero-jewel-ring{left:81%;top:61%;width:16%;height:31%;transform:rotate(-10deg)}
-.hero-jewel-bracelet{left:55%;top:78%;width:38%;height:22%;object-fit:fill;transform:rotate(8deg)}
+.hero-product-layers>svg{display:block;width:100%;height:100%;position:absolute;inset:0;stroke:none;overflow:hidden}
+.hero-product-layers .hero-products-mobile{display:none}
 .hero-copy{z-index:2}
 @media(max-width:700px){
- .hero-jewel-earrings{left:42%;top:62%;width:22%;height:23%}
- .hero-jewel-ring{left:80%;top:76%;width:20%;height:19%;transform:rotate(-10deg)}
- .hero-jewel-bracelet{left:42%;top:85%;width:56%;height:15%;object-fit:fill;transform:rotate(8deg)}
+ .hero-product-layers{inset:0 calc(-1 * var(--u))}
+ .hero-product-layers .hero-products-desktop{display:none}
+ .hero-product-layers .hero-products-mobile{display:block}
 }
