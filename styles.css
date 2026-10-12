@@ -777,3 +777,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .cro-gift-card{background:none;border:0;align-items:center;overflow:visible;border-radius:0}.cro-gift-card:nth-child(5){display:none}.cro-gift-card.is-selected{box-shadow:none}.cro-gift-card img{border-radius:50%;border:2px solid #ffdcaa;aspect-ratio:1;width:auto;max-width:100%;height:calc(100% - 23px);flex:none}.cro-gift-card.is-selected img{box-shadow:0 0 0 2px #fff4bf}.cro-gift-card>span{color:#fff;font:400 12px/1.2 var(--sans);padding:4px 0}.cro-gift-card svg{display:none}.cro-matching{min-width:0;width:100%;min-height:38px;font-size:12px}
 }
 @media(max-width:350px){.cro-section{--cro-height:570px;padding:12px}.cro-heading h2{font-size:29px}.cro-coin-copy h3{font-size:17px}.cro-coin-copy .cro-button{min-width:115px;font-size:10px}.cro-set-card{padding:11px}.cro-set-card h3{font-size:23px}}
+
+/* Hero product composition: transparent source assets, original hero dimensions retained. */
+.hero-product-layers{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.hero-jewel{position:absolute;display:block;object-fit:contain;filter:drop-shadow(2px 5px 3px #75320725);transform-origin:50% 80%}
+.hero-jewel-earrings{left:49%;top:37%;width:16%;height:38%}
+.hero-jewel-ring{left:81%;top:61%;width:16%;height:31%;transform:rotate(-10deg)}
+.hero-jewel-bracelet{left:55%;top:78%;width:38%;height:22%;object-fit:fill;transform:rotate(8deg)}
+.hero-copy{z-index:2}
+@media(max-width:700px){
+ .hero-jewel-earrings{left:42%;top:62%;width:22%;height:23%}
+ .hero-jewel-ring{left:80%;top:76%;width:20%;height:19%;transform:rotate(-10deg)}
+ .hero-jewel-bracelet{left:42%;top:85%;width:56%;height:15%;object-fit:fill;transform:rotate(8deg)}
+}
