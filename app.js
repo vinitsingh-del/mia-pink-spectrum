@@ -18,7 +18,8 @@ const gifts = [
 ];
 const currency = value => '₹'+value.toLocaleString('en-IN');
 const icon = name => `<svg aria-hidden="true"><use href="#${name}"/></svg>`;
-const art = (crop,label,className='product-art') => `<span class="${className}"><svg viewBox="${crop.join(' ')}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}"><image href="assets/reference-artwork.jpg" width="1024" height="1536"/></svg></span>`;
+const croProductImages={'Floral Spark Studs':'studs','Twilight Drop Pendant':'pendant','Petal Glow Ring':'ring','Bloom Bangle':'bangle','Layered Spark Ring':'ring','Halo Glow Earrings':'drops','Twist Luxe Pendant':'pendant','Petal Charm Bracelet':'bracelet'};
+const art = (crop,label,className='product-art') => croProductImages[label]?`<span class="${className}"><img src="assets/cro-${croProductImages[label]}.webp" alt="${label}" width="640" height="640" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>`: `<span class="${className}"><svg viewBox="${crop.join(' ')}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}"><image href="assets/reference-artwork.jpg" width="1024" height="1536"/></svg></span>`;
 const card = p => `<article class="product-card"><button class="product-main" data-product="${p.id}" aria-label="View ${p.name}, ${currency(p.price)}">${art(p.crop,p.name)}<span class="product-text"><span class="product-name">${p.name}</span><span class="product-price">${currency(p.price)}</span></span><span class="round-arrow">${icon('chevron')}</span></button></article>`;
 const festivalCategories=[
  {id:'necklaces',name:'Necklaces',image:'assets/necklaces.webp',products:[]},
@@ -27,51 +28,41 @@ const festivalCategories=[
  {id:'bangles',name:'Bangles',image:'assets/bangles.webp',products:['bloom']},
  {id:'pendants',name:'Pendants',image:'assets/pendants.webp',products:['twilight','twist']}
 ];
-// Reuse only photographic windows from the approved gift-box mockup.
-// Captions, tabs, arrows and scrolling remain native accessible UI.
+// New standalone artwork; recipient and budget selections combine.
 const guideRelationships=[
- {title:'For Her',copy:'Celebrate her light',category:'earrings',crop:[49,316,247,374]},
- {title:'For Mom',copy:'Forever grateful',category:'bangles',crop:[311,316,242,374]},
- {title:'For Sister',copy:'Partners in joy',category:'rings',crop:[571,316,244,374]},
- {title:'For Wife',copy:'A brighter tomorrow',category:'pendants',crop:[833,316,242,374]},
- {title:'For Friends',copy:'Because she’s family',category:'necklaces',crop:[1094,316,242,374]}
+ {title:'For Her',image:'studs',ids:['floral','halo']},
+ {title:'For Mom',image:'pendant',ids:['floral','twilight','bloom']},
+ {title:'For Sister',image:'ring',ids:['petal','floral']},
+ {title:'For Wife',image:'bangle',ids:['bloom','twilight','petal']},
+ {title:'For Friends',image:'drops',ids:['halo','floral','charm']}
 ];
-const guideBudgets=[
- {title:'Under ₹25,000',copy:'Little gestures of love',min:0,max:25000,crop:guideRelationships[0].crop},
- {title:'₹25,000–₹35,000',copy:'Something truly special',min:25000,max:35000,crop:guideRelationships[2].crop},
- {title:'₹35,000–₹50,000',copy:'A celebration to remember',min:35000,max:50000,crop:guideRelationships[3].crop},
- {title:'₹50,000 & above',copy:'For life’s big moments',min:50000,max:Infinity,crop:guideRelationships[1].crop},
- {title:'All Gifts',copy:'Find their next favourite',min:0,max:Infinity,crop:guideRelationships[4].crop}
-];
-const guidePhoto=(g)=>`<span class="guide-photo"><svg viewBox="${g.crop.join(' ')}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${g.title} — jewellery in a festive gift box"><image href="assets/gifting-guide-artwork.png" width="1774" height="887"/></svg></span>`;
-let guideMode='relationship';
+const guideBudgets=[{title:'Under ₹10,000',min:0,max:10000},{title:'₹10,000 – ₹20,000',min:10000,max:20000},{title:'₹20,000 – ₹30,000',min:20000,max:30000}];
+let guideMode='relationship',guideRecipient=1,guideBudget=2;
 const guideGrid=document.querySelector('#guide-grid');
-function renderGuide(mode){
- if(!['relationship','budget'].includes(mode))return;
- guideMode=mode;const items=mode==='relationship'?guideRelationships:guideBudgets;
- guideGrid.setAttribute('data-mode',mode);
- guideGrid.innerHTML=items.map((g,i)=>`<article class="guide-card"><button class="guide-card-button" data-guide-item="${i}" aria-label="${g.title}: ${g.copy}">${guidePhoto(g)}<span class="guide-caption"><span class="guide-name">${g.title}</span><span class="guide-description">${g.copy}</span><span class="guide-arrow">${icon('arrow')}</span></span></button></article>`).join('');
- for(const name of ['relationship','budget']){const tab=document.querySelector('#guide-'+name+'-tab');tab.setAttribute('aria-selected',String(name===mode));tab.setAttribute('tabindex',name===mode?'0':'-1')}
+function renderGuide(mode=guideMode){
+ guideMode=mode;
+ document.querySelector('#cro-recipients').innerHTML=guideRelationships.map((g,i)=>`<button data-recipient="${i}" aria-pressed="${i===guideRecipient}">${g.title}${i===guideRecipient?' ×':''}</button>`).join('');
+ document.querySelector('#cro-budgets').innerHTML=guideBudgets.map((g,i)=>`<button data-budget="${i}" aria-pressed="${i===guideBudget}">${g.title}</button>`).join('');
+ guideGrid.innerHTML=guideRelationships.map((g,i)=>`<button class="cro-gift-card ${i===guideRecipient?'is-selected':''}" data-recipient="${i}" aria-pressed="${i===guideRecipient}"><img src="assets/cro-${g.image}.webp" alt="${g.title} — illustrative jewellery" width="640" height="640" loading="lazy"><span>${g.title} ${icon('arrow')}</span></button>`).join('');
+ document.querySelector('#guide-subtitle').textContent=`Thoughtful picks ${guideRecipient<0?'for every bond':guideRelationships[guideRecipient].title.replace('For','for')}, within your budget.`;
+ for(const name of ['relationship','budget']){const tab=document.querySelector('#guide-'+name+'-tab');tab.setAttribute('aria-selected',String(name===mode));tab.tabIndex=name===mode?0:-1;}
  document.querySelector('#guide-panel').setAttribute('aria-labelledby','guide-'+mode+'-tab');
- document.querySelector('#guide-progress').innerHTML=items.slice(0,4).map((g,i)=>`<button data-guide-page="${i}" aria-label="Show gifting cards ${i+1} and ${i+2}" aria-pressed="${i===0}"></button>`).join('');
- guideGrid.scrollLeft=0;
+ document.querySelector('.cro-guide-controls').classList.toggle('budget-first',mode==='budget');
 }
-function showGuideItem(index){
- const items=guideMode==='relationship'?guideRelationships:guideBudgets,g=items[Number(index)];if(!g)return;
- if(guideMode==='budget'){collection(g.title,products.filter(p=>p.price>=g.min&&p.price<g.max));return}
- showCategory(g.category);document.querySelector('#dialog-title').textContent=g.title;
+function showMatchingGifts(){
+ const g=guideRelationships[guideRecipient],b=guideBudgets[guideBudget];
+ const items=products.filter(p=>(!g||g.ids.includes(p.id))&&(!b||(p.price>=b.min&&p.price<b.max)));
+ if(items.length)collection('Matching gifts'+(g?' · '+g.title:''),items);
+ else openDialog('Find your gift',`<p>No preview pieces match these filters. Try another budget or explore the full Mia gifting collection.</p><div class="dialog-actions"><a class="cro-button" href="https://www.miabytanishq.com/en_IN/mia-gifting">Explore gifts on Mia ${icon('arrow')}</a></div>`);
 }
-function syncGuideProgress(){
- const available=guideGrid.scrollWidth-guideGrid.clientWidth;
- const page=available>0?Math.round(3*guideGrid.scrollLeft/available):0;
- document.querySelectorAll('[data-guide-page]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.guidePage)===page)));
-}
-guideGrid.addEventListener('scroll',syncGuideProgress,{passive:true});
-document.querySelector('.guide-tabs').addEventListener('keydown',e=>{
- if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
- e.preventDefault();const next=e.key==='Home'?'relationship':e.key==='End'?'budget':guideMode==='relationship'?'budget':'relationship';renderGuide(next);document.querySelector('#guide-'+next+'-tab').focus();
+document.querySelector('#gifting-guide').addEventListener('click',e=>{
+ const r=e.target.closest('[data-recipient]'),b=e.target.closest('[data-budget]');
+ if(r){const i=Number(r.dataset.recipient);guideRecipient=i===guideRecipient?-1:i;renderGuide();}
+ if(b){const i=Number(b.dataset.budget);guideBudget=i===guideBudget?-1:i;renderGuide();}
 });
-renderGuide('relationship');
+document.querySelector('#cro-matching').addEventListener('click',showMatchingGifts);
+document.querySelector('.guide-tabs').addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();renderGuide(guideMode==='relationship'?'budget':'relationship');document.querySelector('#guide-'+guideMode+'-tab').focus();}});
+renderGuide();
 document.querySelector('#more-grid').innerHTML=products.slice(4).map(card).join('');
 document.querySelector('#look-products').innerHTML=products.slice(0,3).map(card).join('');
 
@@ -79,7 +70,7 @@ const dialog=document.querySelector('#shopping-dialog'),content=document.querySe
 const byId=id=>products.find(p=>p.id===id);
 function loadState(){try{const s=JSON.parse(localStorage.getItem('mia-pink-spectrum-v2')||'{}');return {wish:Array.isArray(s.wish)?s.wish.filter(byId):[],bag:Array.isArray(s.bag)?s.bag.filter(byId):[],bagVariants:s.bagVariants&&typeof s.bagVariants==='object'?s.bagVariants:{}}}catch{return {wish:[],bag:[],bagVariants:{}}}}
 const state=loadState();
-const bundleAssets={floral:'assets/bundle-studs.png',twilight:'assets/bundle-drop.png',petal:'assets/bundle-ring.png',twist:'assets/bundle-twist.png',charm:'assets/bundle-bracelet.png'};
+const bundleAssets={floral:'assets/cro-studs.webp',twilight:'assets/cro-pendant.webp',petal:'assets/cro-ring.webp',twist:'assets/cro-pendant.webp',charm:'assets/cro-bracelet.webp'};
 const bundleSets=[
  {id:'glow',name:'Festive Glow Duo',products:['floral','twilight']},
  {id:'petal',name:'Petal Spark Duo',products:['floral','petal']},
@@ -88,9 +79,20 @@ const bundleSets=[
 let activeBundle='glow',bundleRingSize='';
 const bundleSizes=['8','9','10','11','12','13','14','15','16','17','18','19','20'];
 const bundleTotal=set=>set.products.reduce((sum,id)=>sum+byId(id).price,0);
+const selectedPieces={glow:new Set(['floral','twilight']),petal:new Set(['floral','petal']),golden:new Set(['twist','charm'])};
+const pieceLabels={floral:'Studs',twilight:'Pendant',petal:'Ring',twist:'Pendant',charm:'Bracelet'};
 function renderBundles(){
- document.querySelector('#bundles-grid').innerHTML=bundleSets.map(set=>`<article class="bundle-card ${set.id===activeBundle?'is-active':''}" id="bundle-${set.id}" data-bundle="${set.id}" aria-labelledby="bundle-title-${set.id}"><div class="bundle-pair">${set.products.map((id,i)=>`${i?'<span class="bundle-plus" aria-hidden="true">+</span>':''}<figure class="bundle-piece"><span class="bundle-image"><img src="${bundleAssets[id]}" alt="${byId(id).name}" width="1024" height="1024" loading="lazy"></span><figcaption>${byId(id).name}</figcaption></figure>`).join('')}</div><span class="bundle-count">2 pieces</span><h3 id="bundle-title-${set.id}">${set.name}</h3><p class="bundle-includes">${set.products.map(id=>byId(id).name).join(' + ')}</p><div class="bundle-price"><span>Combined total</span><strong>${currency(bundleTotal(set))}</strong></div><button class="bundle-view" data-bundle-view="${set.id}" aria-label="View ${set.name}">VIEW SET ${icon('arrow')}</button><div class="bundle-size-row">${set.id==='petal'?'<button class="bundle-size-link" data-bundle-size="petal">Choose ring size</button>':''}</div></article>`).join('');
+ const descriptions=['Classic sparkle for your celebrations.','Delicate details, endless charm.','Elegant pieces for a lasting glow.'];
+ document.querySelector('#bundles-grid').innerHTML=bundleSets.map((set,i)=>`<article class="cro-set-card ${set.id===activeBundle?'is-active':''}" id="bundle-${set.id}" data-bundle="${set.id}"><h3>${set.name}</h3><p>${descriptions[i]}</p><div class="cro-pieces">${set.products.map(id=>`<label class="cro-piece"><img src="${bundleAssets[id]}" alt="${byId(id).name} — illustrative artwork" width="640" height="640" loading="lazy"><span><input type="checkbox" data-piece="${id}" data-set="${set.id}" ${selectedPieces[set.id].has(id)?'checked':''}><span>${pieceLabels[id]}<strong>${currency(byId(id).price)}</strong></span></span></label>`).join('')}</div><div class="cro-size-note">${set.id==='petal'?'<button data-bundle-size="petal">Ring size required ⓘ</button>':''}</div><div class="cro-set-total"><span>Set total</span><strong>${currency([...selectedPieces[set.id]].reduce((v,id)=>v+byId(id).price,0))}</strong></div><button class="cro-button" data-bundle-view="${set.id}">Choose this set ${icon('arrow')}</button><button class="cro-single" data-single="${set.id}">Buy one piece ${icon('arrow')}</button></article>`).join('');
 }
+document.querySelector('#bundles-grid').addEventListener('change',e=>{
+ if(!e.target.matches('[data-piece]'))return;
+ const selected=selectedPieces[e.target.dataset.set];
+ if(e.target.checked)selected.add(e.target.dataset.piece);else selected.delete(e.target.dataset.piece);
+ const article=e.target.closest('.cro-set-card');
+ article.querySelector('.cro-set-total strong').textContent=currency([...selected].reduce((v,id)=>v+byId(id).price,0));
+});
+document.querySelector('#bundles-grid').addEventListener('click',e=>{const b=e.target.closest('[data-single]');if(b){const set=bundleSets.find(s=>s.id===b.dataset.single);collection('Choose one piece',set.products.map(byId));}});
 function selectBundle(id){
  if(!bundleSets.some(set=>set.id===id))return;
  activeBundle=id;
@@ -100,13 +102,14 @@ function selectBundle(id){
  });
 }
 function showBundle(id,focusSize=false){
- const set=bundleSets.find(s=>s.id===id);if(!set)return;
+ const original=bundleSets.find(s=>s.id===id);if(!original)return;
+ const set={...original,products:[...selectedPieces[id]]};if(!set.products.length){toast('Select at least one piece.');return;}
  const ring=set.products.includes('petal');
- openDialog(set.name,`<div class="bundle-review-items">${set.products.map(pid=>`<article class="bundle-review-item"><img src="${bundleAssets[pid]}" alt="${byId(pid).name}" width="1024" height="1024"><h3>${byId(pid).name}</h3><p>${currency(byId(pid).price)}</p></article>`).join('')}</div>${ring?`<label class="bundle-ring-field" for="bundle-ring-size">Choose ring size<select id="bundle-ring-size"><option value="">Select size</option>${bundleSizes.map(size=>`<option value="${size}" ${bundleRingSize===size?'selected':''}>${size}</option>`).join('')}</select></label><p class="bundle-size-error" id="bundle-size-error" role="status"></p>`:''}<p class="detail-price">Combined total ${currency(bundleTotal(set))}</p><div class="dialog-actions"><button data-bundle-add="${id}">Add both to preview bag</button></div><p class="dialog-note">Design preview using the supplied product prices. Ring sizes are illustrative options; live availability and checkout are not connected.</p>`);
+ openDialog(set.name,`<div class="bundle-review-items">${set.products.map(pid=>`<article class="bundle-review-item"><img src="${bundleAssets[pid]}" alt="${byId(pid).name}" width="1024" height="1024"><h3>${byId(pid).name}</h3><p>${currency(byId(pid).price)}</p></article>`).join('')}</div>${ring?`<label class="bundle-ring-field" for="bundle-ring-size">Choose ring size<select id="bundle-ring-size"><option value="">Select size</option>${bundleSizes.map(size=>`<option value="${size}" ${bundleRingSize===size?'selected':''}>${size}</option>`).join('')}</select></label><p class="bundle-size-error" id="bundle-size-error" role="status"></p>`:''}<p class="detail-price">Selected total ${currency(bundleTotal(set))}</p><div class="dialog-actions"><button data-bundle-add="${id}">Add selected to preview bag</button></div><p class="dialog-note">Design preview using the supplied product prices. Ring sizes are illustrative options; live availability and checkout are not connected.</p>`);
  if(focusSize&&ring)document.querySelector('#bundle-ring-size').focus();
 }
 function addBundle(id){
- const set=bundleSets.find(s=>s.id===id);if(!set)return;
+ const original=bundleSets.find(s=>s.id===id);if(!original)return;const set={...original,products:[...selectedPieces[id]]};if(!set.products.length)return;
  let size='';
  if(set.products.includes('petal')){
   const field=document.querySelector('#bundle-ring-size');size=field.value;
@@ -114,7 +117,7 @@ function addBundle(id){
   bundleRingSize=size;
  }
  set.products.forEach(pid=>{const index=state.bag.length;state.bag.push(pid);if(pid==='petal')state.bagVariants[index]=size;});
- persist();showBag();toast('Both pieces added to your preview bag.');
+ persist();showBag();toast('Selected pieces added to your preview bag.');
 }
 function removeBagItem(id,index=state.bag.indexOf(id)){
  if(!Number.isInteger(index)||index<0||state.bag[index]!==id)return;
@@ -162,8 +165,6 @@ document.addEventListener('click',e=>{
  const bundleSize=e.target.closest('[data-bundle-size]');if(bundleSize){showBundle(bundleSize.dataset.bundleSize,true);return}
  const bundleAdd=e.target.closest('[data-bundle-add]');if(bundleAdd){addBundle(bundleAdd.dataset.bundleAdd);return}
  const guideTab=e.target.closest('[data-guide-mode]');if(guideTab){renderGuide(guideTab.dataset.guideMode);return}
- const guideItem=e.target.closest('[data-guide-item]');if(guideItem){showGuideItem(guideItem.dataset.guideItem);return}
- const guidePage=e.target.closest('[data-guide-page]');if(guidePage){const page=Number(guidePage.dataset.guidePage);guideGrid.scrollTo({left:page*(guideGrid.scrollWidth-guideGrid.clientWidth)/3,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return}
  const lookPiece=e.target.closest('[data-look-piece]');if(lookPiece){document.querySelectorAll('[data-look-piece]').forEach(dot=>{const selected=dot.dataset.lookPiece===lookPiece.dataset.lookPiece;dot.classList.toggle('active',selected);dot.setAttribute('aria-pressed',String(selected))});detail(lookPiece.dataset.lookPiece);return}
  const p=e.target.closest('[data-product]');if(p){detail(p.dataset.product);return}
  const add=e.target.closest('[data-add]');if(add){state.bag.push(add.dataset.add);persist();toast('Added to your preview bag.');return}
