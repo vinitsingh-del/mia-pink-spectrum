@@ -867,3 +867,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .look-approved-rail .look-rail-explore{display:flex;grid-column:1/-1;justify-content:flex-end;border:0;font-size:3.5cqw;min-height:24px}
 }
 @media(max-width:700px){.look-title-break{display:none}}
+.look-approved-diya{height:14%;bottom:0}
+.look-approved-photo>.look-approved-mobile{display:none}
+@media(max-width:700px){.look-approved-diya{height:70px;bottom:auto}.look-approved-photo>.look-approved-desktop{display:none}.look-approved-photo>.look-approved-mobile{display:block}}
