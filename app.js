@@ -26,6 +26,7 @@ const festivalCategories=[
  {id:'earrings',name:'Earrings',image:'assets/earrings.webp',products:['floral','halo']},
  {id:'rings',name:'Rings',image:'assets/rings.webp',products:['petal','layered']},
  {id:'bangles',name:'Bangles',image:'assets/bangles.webp',products:['bloom']},
+ {id:'bracelets',name:'Bracelets',image:'assets/cro-bracelet.webp',products:['charm']},
  {id:'pendants',name:'Pendants',image:'assets/pendants.webp',products:['twilight','twist']}
 ];
 // New standalone artwork; recipient and budget selections combine.
@@ -64,7 +65,7 @@ document.querySelector('#cro-matching').addEventListener('click',showMatchingGif
 document.querySelector('.guide-tabs').addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();renderGuide(guideMode==='relationship'?'budget':'relationship');document.querySelector('#guide-'+guideMode+'-tab').focus();}});
 renderGuide();
 document.querySelector('#more-grid').innerHTML=products.slice(4).map(card).join('');
-document.querySelector('#look-products').innerHTML=products.slice(0,3).map(card).join('');
+const lookProducts=document.querySelector('#look-products');if(lookProducts)lookProducts.innerHTML=products.slice(0,3).map(card).join('');
 
 const dialog=document.querySelector('#shopping-dialog'),content=document.querySelector('#dialog-content');
 const byId=id=>products.find(p=>p.id===id);
