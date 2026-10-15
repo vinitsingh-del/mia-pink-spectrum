@@ -899,3 +899,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .precious-categories{width:100%;margin-top:12px;min-height:40px}
  .precious-categories button{font-size:11px;min-height:40px}
 }
+
+/* Compact jewellery markers: visual diameter 44px × .7; original hit area retained. */
+.look-point{position:relative;background:transparent;border:0;box-shadow:none;font-size:0;isolation:isolate}
+.look-point:before{content:"";position:absolute;inset:15%;border:1px solid #bd8d69;border-radius:50%;background:#fff7ed;animation:look-marker-blink 1.4s ease-in-out infinite;pointer-events:none}
+.look-point:after{content:"+";position:absolute;inset:15%;display:grid;place-items:center;color:var(--pink);font:400 21.7px/1 Arial;animation:look-marker-blink 1.4s ease-in-out infinite;pointer-events:none}
+.look-point:hover,.look-point:focus-visible{background:transparent}
+.look-point:hover:before,.look-point:hover:after,.look-point:focus-visible:before,.look-point:focus-visible:after{animation:none;opacity:1}
+@keyframes look-marker-blink{0%,100%{opacity:1}50%{opacity:.22}}
+@media(prefers-reduced-motion:reduce){.look-point:before,.look-point:after{animation:none}}
+@media(min-width:701px){
+ .campaign-offer.precious-ivory{max-width:1100px;grid-template-columns:55% 45%}
+ .precious-ivory .offer-copy{padding-left:24px;padding-right:24px}
+ .precious-ivory .pill,.precious-ivory .precious-categories{width:100%}
+}
