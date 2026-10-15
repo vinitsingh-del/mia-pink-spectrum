@@ -940,3 +940,19 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(prefers-reduced-motion:reduce){
  .hero-spotlight .hero-flame-motion,.hero-spotlight .hero-flame-halo{animation:none;transform:none}
 }
+
+/* Lightscapes mobile hero — 1:1 rebuild of the approved mobile reference. Desktop untouched. */
+.hero-spotlight .campaign-logo-wrap{display:block}
+@media(max-width:700px){
+ .hero.hero-spotlight{height:auto;aspect-ratio:704/1069;container-type:inline-size}
+ .hero-spotlight .hero-art img{object-fit:cover;object-position:center top}
+ .hero-spotlight .hero-flame-mobile .hero-flame-motion,.hero-spotlight .hero-flame-mobile .hero-flame-halo{transform-origin:12.032% 69.131%}
+ .hero-spotlight .hero-copy{left:0;right:0;top:3.54cqw;width:auto;display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff;text-shadow:0 .2cqw 2.4cqw rgba(140,10,60,.18)}
+ .hero-spotlight .campaign-logo{width:16.43cqw;height:15.86cqw;margin:0;object-fit:contain;transform:translateX(-.28cqw)}
+ .hero-spotlight h1{margin-top:2.6cqw;font-family:"EB Garamond",var(--serif);font-weight:400;font-size:14.55cqw;line-height:1;letter-spacing:-.024em;animation:none;transform:translateX(2.05cqw)}
+ .hero-spotlight h1>span{display:block;white-space:nowrap}
+ .hero-spotlight h1>span:last-child{font-size:.545em;line-height:1;letter-spacing:-.01em;margin-top:.35cqw;transform:translateX(-1.1cqw)}
+ .hero-spotlight .hero-copy p{margin-top:2.25cqw;font:400 3.95cqw/1 Montserrat,var(--sans);letter-spacing:.085em;white-space:nowrap;transform:translateX(1.15cqw)}
+ .hero-spotlight .hero-cta{box-sizing:border-box;width:37.1cqw;height:9cqw;min-height:0;margin-top:4.1cqw;padding:0;gap:1.8cqw;border-radius:100px;background:#fbf5eb;color:#513526;font:600 2.75cqw/1 Montserrat,var(--sans);letter-spacing:.15em;text-shadow:none;box-shadow:0 .8cqw 2.6cqw rgba(120,10,50,.14);transform:translateX(.65cqw)}
+ .hero-spotlight .hero-cta svg{width:3.7cqw;height:3.7cqw;stroke-width:1.5}
+}
