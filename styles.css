@@ -913,3 +913,30 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .precious-ivory .offer-copy{padding-left:24px;padding-right:24px}
  .precious-ivory .pill,.precious-ivory .precious-categories{width:100%}
 }
+
+/* Approved Necklace Spotlight hero — preserve the existing section height rules. */
+.hero-spotlight{isolation:isolate;overflow:hidden}
+.hero-spotlight .hero-art{inset:0}
+.hero-spotlight .hero-art img{object-fit:cover;object-position:center bottom}
+.hero-spotlight .hero-flame,.hero-spotlight .hero-diamond-shine{inset:0;z-index:1}
+.hero-spotlight .hero-flame-desktop .hero-flame-motion,.hero-spotlight .hero-flame-desktop .hero-flame-halo{transform-origin:39.788% 77.049%}
+.hero-spotlight .hero-flame-mobile .hero-flame-motion,.hero-spotlight .hero-flame-mobile .hero-flame-halo{transform-origin:10.071% 66.476%}
+.hero-spotlight .hero-copy{left:4%;top:10%;width:36%;text-align:center;color:#fff}
+.hero-spotlight .campaign-logo{width:auto;height:clamp(48px,6.7vw,104px);margin:0 auto clamp(8px,1.1vw,17px);object-fit:contain}
+.hero-spotlight h1{font-size:clamp(42px,6.2vw,98px);line-height:.95;letter-spacing:-.045em;animation:none}
+.hero-spotlight h1>span:last-child{font-size:.53em;line-height:1.2;letter-spacing:-.035em;margin-top:5px}
+.hero-spotlight .hero-copy p{font:400 clamp(13px,1.8vw,28px)/1.25 var(--sans);letter-spacing:.06em;margin-top:clamp(8px,1vw,16px);white-space:nowrap}
+.hero-spotlight .hero-cta{min-height:44px;margin-top:clamp(12px,1.3vw,20px);padding:10px clamp(22px,2vw,32px);font-size:clamp(11px,1.05vw,16px);letter-spacing:.1em;color:#665140;gap:12px}
+.hero-spotlight .hero-cta svg{width:18px;height:18px}
+@media(max-width:700px){
+ .hero-spotlight .hero-copy{left:5%;top:12px;width:90%}
+ .hero-spotlight .campaign-logo{height:clamp(34px,10.8vw,49px);margin-bottom:7px}
+ .hero-spotlight h1{font-size:clamp(34px,10.5vw,55px);line-height:.94;letter-spacing:-.04em}
+ .hero-spotlight h1>span:last-child{font-size:.54em;margin-top:2px}
+ .hero-spotlight .hero-copy p{font-size:clamp(11px,3.2vw,17px);line-height:1.25;letter-spacing:.04em;margin-top:7px}
+ .hero-spotlight .hero-cta{min-height:36px;padding:8px 22px;font-size:10px;margin-top:9px;gap:9px}
+ .hero-spotlight .hero-cta svg{width:14px;height:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-spotlight .hero-flame-motion,.hero-spotlight .hero-flame-halo{animation:none;transform:none}
+}
