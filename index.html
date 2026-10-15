@@ -53,7 +53,7 @@ html.mia-loading{overflow:hidden}html.mia-loading .mia-preloader{opacity:1;visib
 })();
 </script>
 <link rel="preload" as="image" href="assets/hero-desktop.png" media="(min-width: 701px)"><link rel="preload" as="image" href="assets/hero-mobile.png" media="(max-width: 700px)">
-<link rel="stylesheet" href="styles.css?v=hero-resting-20261012"><script src="app.js?v=cro-sections-20261012" defer></script>
+<link rel="stylesheet" href="styles.css?v=campaign-assets-20261015"><script src="app.js?v=cro-sections-20261012" defer></script>
 </head>
 <body>
 <div class="mia-preloader" id="mia-preloader" role="status" aria-label="Mia is lighting up your Diwali. Loading the collection.">
@@ -102,8 +102,8 @@ html.mia-loading{overflow:hidden}html.mia-loading .mia-preloader{opacity:1;visib
   </div>
   <button class="festival-mobile-shop shop-link" data-action="festival">SHOP ALL <svg aria-hidden="true"><use href="#arrow"/></svg></button>
 </section>
-<section class="offer shell" id="offers" aria-labelledby="offer-title"><div class="offer-art" aria-hidden="true"><svg viewBox="364 755 388 169" preserveAspectRatio="xMidYMid slice"><image href="assets/reference-artwork.jpg" width="1024" height="1536"/></svg></div><div class="offer-copy"><h2 id="offer-title"><span>Festive Offer</span></h2><div class="offer-values"><div><span>Up to</span><strong>80% Off<sup>*</sup></strong></div><div><span>Flat</span><strong>15% Off<sup>*</sup></strong></div></div><button class="pill pink" data-action="offer">SHOP NOW <svg><use href="#arrow"/></svg></button></div></section>
-<section class="shop-look shell" id="shop-the-look" aria-labelledby="look-title">
+<section class="offer shell campaign-offer" id="offers" aria-labelledby="offer-title"><div class="offer-art"><img src="assets/campaign-everyday-portrait.webp" width="1000" height="811" alt="Mia campaign portrait featuring layered necklaces, earrings, rings and bracelets" loading="lazy"></div><div class="offer-copy"><span class="campaign-kicker">PRECIOUS, EVERY DAY</span><h2 id="offer-title">Your festive favourites</h2><p>Little details. A luminous celebration.</p><a class="pill pink" href="#featured">EXPLORE THE EDIT <svg aria-hidden="true"><use href="#arrow"/></svg></a></div></section>
+<section class="shop-look shell campaign-look" id="shop-the-look" aria-labelledby="look-title">
   <div class="look-campaign">
     <div class="look-copy">
       <img class="look-backdrop" src="assets/look-diya.png" width="887" height="1774" alt="" loading="lazy">
@@ -111,17 +111,11 @@ html.mia-loading{overflow:hidden}html.mia-loading .mia-preloader{opacity:1;visib
       <span class="look-rule" aria-hidden="true"></span>
       <h2 id="look-title">Shop<br>the Look</h2>
       <p>Every detail, made to shine.</p>
-      <button class="pill look-cta" data-action="look">EXPLORE THE LOOK <svg><use href="#arrow"/></svg></button>
+      <a class="pill look-cta" href="https://www.miabytanishq.com/">EXPLORE ON MIA <svg><use href="#arrow"/></svg></a>
     </div>
     <div class="look-photo">
-      <img class="look-model" src="assets/look-model.png" width="1086" height="1448" alt="Woman wearing a fuchsia sari with gold and diamond earrings, necklace, bangles, bracelet and rings in a festive palace setting" loading="lazy">
-      <svg class="look-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M27 25H47M83 35 75 42H51M24 65H40L50 67M80 69H61M79 84H74V77H67"/><circle cx="47" cy="25" r=".55"/><circle cx="51" cy="42" r=".55"/><circle cx="50" cy="67" r=".55"/><circle cx="61" cy="69" r=".55"/><circle cx="67" cy="77" r=".55"/></svg>
-      <svg class="look-mobile-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M28 22H38L47 20M72 47H63L51 44M73 88H70L67 94"/></svg>
-      <button class="look-hotspot look-earrings" data-product="floral" aria-label="Shop earrings — Floral Spark Studs">Earrings <span aria-hidden="true">+</span></button>
-      <button class="look-hotspot look-necklace" data-product="twilight" aria-label="Shop necklace — Twilight Drop Pendant">Necklace <span aria-hidden="true">+</span></button>
-      <button class="look-hotspot look-bangles" data-product="bloom" aria-label="Shop bangles — Bloom Bangle">Bangles <span aria-hidden="true">+</span></button>
-      <button class="look-hotspot look-bracelet" data-product="charm" aria-label="Shop bracelet — Petal Charm Bracelet">Bracelet <span aria-hidden="true">+</span></button>
-      <button class="look-hotspot look-rings" data-product="petal" aria-label="Shop rings — Petal Glow Ring">Rings <span aria-hidden="true">+</span></button>
+      <img class="look-model" src="assets/campaign-festive-portrait.webp" width="1184" height="1200" alt="Mia festive campaign portrait with delicate gold jewellery and a blush embroidered outfit" loading="lazy">
+      <nav class="campaign-look-categories" aria-label="Explore jewellery categories"><button data-category="earrings">Earrings <span>↗</span></button><button data-category="pendants">Pendants <span>↗</span></button><button data-category="rings">Rings <span>↗</span></button></nav>
     </div>
   </div>
   <div class="look-complete">
@@ -135,13 +129,13 @@ html.mia-loading{overflow:hidden}html.mia-loading .mia-preloader{opacity:1;visib
   <header class="latest-heading"><h2 id="latest-title">Latest Collections</h2><button class="shop-link" data-action="all">VIEW ALL <svg aria-hidden="true"><use href="#arrow"/></svg></button></header>
   <div class="collection-duet">
     <article class="collection-group">
-      <button class="collection-banner collection-gold" data-action="latest-gold" aria-label="Explore Gold Jewellery"><img class="collection-campaign-jewel" src="assets/earrings.webp" alt="" width="640" height="640" loading="lazy"><span class="collection-campaign-copy"><span class="collection-eyebrow">MIA EDIT</span><span class="collection-campaign-title">Gold<br>Jewellery</span><span class="collection-campaign-cta">EXPLORE <svg aria-hidden="true"><use href="#arrow"/></svg></span></span></button>
+      <button class="collection-banner collection-gold campaign-collection" data-category="earrings" aria-label="Explore earrings"><img class="campaign-collection-photo" src="assets/campaign-earrings.webp" alt="" width="1400" height="788" loading="lazy"><span class="collection-campaign-copy"><span class="collection-eyebrow">THE FESTIVE EDIT</span><span class="collection-campaign-title">Lightscapes<br>Earrings</span><span class="collection-campaign-cta">EXPLORE <svg aria-hidden="true"><use href="#arrow"/></svg></span></span></button>
       <div class="collection-products"><button class="collection-product" data-category="earrings" aria-label="Shop Earrings"><span class="collection-product-image"><img class="collection-product-art" src="assets/earrings.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Earrings</span></button>
 <button class="collection-product" data-category="pendants" aria-label="Shop Pendants"><span class="collection-product-image"><img class="collection-product-art" src="assets/pendants.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Pendants</span></button>
 <button class="collection-product" data-category="bangles" aria-label="Shop Bangles"><span class="collection-product-image"><img class="collection-product-art" src="assets/bangles.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Bangles</span></button></div>
     </article>
     <article class="collection-group">
-      <button class="collection-banner collection-diamond" data-action="latest-diamond" aria-label="Explore Diamond Jewellery"><img class="collection-campaign-jewel" src="assets/rings.webp" alt="" width="640" height="640" loading="lazy"><span class="collection-campaign-copy"><span class="collection-eyebrow">MIA EDIT</span><span class="collection-campaign-title">Diamond<br>Jewellery</span><span class="collection-campaign-cta">EXPLORE <svg aria-hidden="true"><use href="#arrow"/></svg></span></span></button>
+      <button class="collection-banner collection-diamond campaign-collection" data-category="rings" aria-label="Explore rings"><img class="campaign-collection-photo" src="assets/campaign-ring-desktop.webp" alt="" width="1400" height="788" loading="lazy"><span class="collection-campaign-copy"><span class="collection-eyebrow">THE FESTIVE EDIT</span><span class="collection-campaign-title">Lightscapes<br>Rings</span><span class="collection-campaign-cta">EXPLORE <svg aria-hidden="true"><use href="#arrow"/></svg></span></span></button>
       <div class="collection-products"><button class="collection-product" data-category="pendants" aria-label="Shop Pendants"><span class="collection-product-image"><img class="collection-product-art" src="assets/pendants.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Pendants</span></button>
 <button class="collection-product" data-category="rings" aria-label="Shop Rings"><span class="collection-product-image"><img class="collection-product-art" src="assets/rings.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Rings</span></button>
 <button class="collection-product" data-category="bangles" aria-label="Shop Bangles"><span class="collection-product-image"><img class="collection-product-art" src="assets/bangles.webp" alt="" width="640" height="640" loading="lazy"></span><span class="collection-product-label">Bangles</span></button></div>

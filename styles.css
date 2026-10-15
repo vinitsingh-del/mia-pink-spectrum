@@ -788,3 +788,44 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .hero-product-layers .hero-products-desktop{display:none}
  .hero-product-layers .hero-products-mobile{display:block}
 }
+
+/* Original Lightscapes campaign assets: native type, compact responsive framing. */
+.campaign-offer{background:#fff5ed;color:#a90849;isolation:isolate}
+.campaign-offer .offer-art{width:46%;inset:0 auto 0 0;overflow:hidden}
+.campaign-offer .offer-art img{width:100%;height:100%;object-fit:cover;object-position:55% 40%}
+.campaign-offer .offer-copy{width:54%;margin-left:auto;padding:clamp(16px,2.5vw,38px);position:relative}
+.campaign-kicker{display:block;font:600 clamp(9px,.9vw,13px)/1.4 var(--sans);letter-spacing:.16em;margin-bottom:8px}
+.campaign-offer h2{font-size:clamp(24px,3.3vw,49px);line-height:1.02;letter-spacing:-.035em}
+.campaign-offer h2:before,.campaign-offer h2:after{display:none}
+.campaign-offer .offer-copy p{font:clamp(12px,1.2vw,18px)/1.4 var(--sans);margin-top:10px}
+.campaign-offer .pill{margin-top:16px;min-height:38px;font-size:11px}
+.campaign-look .look-photo{background:#b70b59}
+.campaign-look .look-model{object-fit:cover;object-position:50% 32%}
+.campaign-look-categories{position:absolute;left:5%;right:5%;bottom:5%;display:flex;justify-content:center;gap:8px}
+.campaign-look-categories button{display:flex;align-items:center;justify-content:center;gap:14px;min-height:40px;padding:8px 16px;border:1px solid #f7d9bc;border-radius:30px;background:#fff6ed;color:#a50847;font-size:12px;box-shadow:0 4px 18px #64123924}
+.campaign-look .look-complete{display:none}
+.collection-banner.campaign-collection{display:flex;justify-content:flex-end;padding:0;background:#c72a57;color:#fff}
+.campaign-collection-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.campaign-collection .collection-campaign-copy{width:48%;padding:5% 4% 8% 2%;text-shadow:0 1px 8px #8b163e60}
+.campaign-collection .collection-campaign-title{font-size:clamp(24px,2.8vw,43px)}
+.campaign-collection .collection-campaign-cta{background:#fff7ee;color:#a20b45;text-shadow:none;border-radius:30px;align-self:flex-start;padding:9px 13px;margin-top:10px;min-height:36px}
+@media(max-width:700px){
+ .campaign-offer{display:grid;grid-template-columns:39% 61%;min-height:180px;height:clamp(180px,47vw,225px);background:#fff5ed;color:#a90849}
+ .campaign-offer .offer-art{position:relative;display:block;width:100%;height:100%}
+ .campaign-offer .offer-art img{object-position:64% center}
+ .campaign-offer .offer-copy{width:100%;padding:14px 12px;text-align:left;align-self:center}
+ .campaign-kicker{font-size:8px;letter-spacing:.11em;margin-bottom:6px}
+ .campaign-offer h2{font-size:clamp(23px,5.8vw,32px);display:block;line-height:1.03}
+ .campaign-offer .offer-copy p{font-size:11px;margin-top:7px;max-width:180px}
+ .campaign-offer .pill{padding:0 12px;font-size:9px;margin-top:10px;min-height:36px;height:auto;background:#a90849;color:#fff}
+ .campaign-look .look-photo{height:clamp(260px,76vw,420px)}
+ .campaign-look .look-model{object-position:50% 28%}
+ .campaign-look-categories{gap:6px;left:4%;right:4%;bottom:16px}
+ .campaign-look-categories button{font-size:11px;min-height:38px;padding:7px 12px;gap:9px}
+ .campaign-collection .collection-campaign-copy{width:47%;padding:5% 3% 5% 1%}
+ .campaign-collection .collection-campaign-title{font-size:clamp(22px,6.2vw,32px)}
+ .campaign-collection .collection-campaign-cta{font-size:9px;padding:6px 10px;margin-top:6px;min-height:30px}
+ .campaign-collection .collection-eyebrow{font-size:8px;letter-spacing:.08em}
+}
+.campaign-offer .offer-art{mask-image:none}
+.campaign-collection-photo{object-fit:contain;object-position:left center}
