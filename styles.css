@@ -1061,3 +1061,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .dialog-item .product-art{width:56px;height:56px}
  .dialog-item>button{grid-column:2;justify-self:start;max-width:100%}
 }
+
+/* Desktop Pooja cards: preserve the full square product artwork. */
+@media(min-width:701px){
+ .cro-pooja .cro-coin-image img{object-fit:contain;object-position:center}
+}
