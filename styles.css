@@ -1062,7 +1062,20 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .dialog-item>button{grid-column:2;justify-self:start;max-width:100%}
 }
 
-/* Desktop Pooja cards: preserve the full square product artwork. */
+/* Desktop coin cards: balanced product portraits and aligned shopping details. */
 @media(min-width:701px){
- .cro-pooja .cro-coin-image img{object-fit:contain;object-position:center}
+ .cro-pooja .cro-coins{gap:16px}
+ .cro-pooja .cro-coin{padding:14px 18px 16px;border:1px solid rgba(172,42,83,.12);border-radius:16px;box-shadow:0 3px 12px rgba(127,0,46,.06);align-items:center}
+ .cro-pooja .cro-coin-image{width:100%;border-radius:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+ .cro-pooja .cro-coin-image img{width:auto;height:100%;max-width:100%;aspect-ratio:1;object-fit:contain;object-position:center;border-radius:50%;border:3px solid #fff8ee;box-shadow:0 0 0 1px #eacdb7;box-sizing:border-box}
+ .cro-pooja .cro-coin-copy{width:100%;padding:12px 0 0;align-items:center;text-align:center;gap:5px}
+ .cro-pooja .cro-coin-copy h3{font-size:clamp(18px,1.65vw,25px);line-height:1.15;letter-spacing:-.025em}
+ .cro-pooja .cro-coin-copy p{font-size:12px;letter-spacing:.04em}
+ .cro-pooja .cro-price-link{font-size:12px;min-height:24px}
+ .cro-pooja .cro-coin-copy .cro-button{width:100%;margin-top:4px;min-height:40px}
+}
+@media(min-width:701px) and (max-width:1050px){
+ .cro-pooja .cro-coins{gap:10px}
+ .cro-pooja .cro-coin{padding:12px 10px}
+ .cro-pooja .cro-coin-copy h3{min-height:42px;display:flex;align-items:center;justify-content:center}
 }
