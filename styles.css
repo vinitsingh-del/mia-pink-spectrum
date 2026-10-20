@@ -979,3 +979,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .hero-classic .hero-cta{width:35cqw;height:9cqw;font:400 3cqw/1 var(--serif);letter-spacing:.03em;margin-top:4cqw;transform:none}
 }
 @media(prefers-reduced-motion:reduce){.hero-classic .diamond-glint{animation:none;opacity:.5;transform:scale(.7)}}
+
+/* Clean text-led actions; shine is contained inside primary CTA surfaces. */
+.precious-ivory .pill,.cro-button,.look-approved-cta,.collection-campaign-cta{justify-content:center;text-align:center;gap:0}
+.product-text{padding-right:calc(15 * var(--u))}
+.more .product-text{padding-right:calc(12 * var(--u))}
+#newsletter-form button{min-width:48px;font-weight:600;font-size:12px}
+:is(.hero-cta,.precious-ivory .pill,.cro-button,.look-approved-cta,.collection-campaign-cta){position:relative;isolation:isolate;overflow:hidden;box-shadow:inset 0 1px 0 #fff6,inset 0 -1px 0 #fff2}
+:is(.hero-cta,.precious-ivory .pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{content:"";position:absolute;inset:-30% -65%;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.15) 44%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.15) 56%,transparent 62%);transform:translateX(-65%);animation:cta-inner-shine 4.8s ease-in-out infinite}
+.precious-ivory .pill::after{animation-delay:-1.2s}
+.cro-button::after{animation-delay:-2.4s}
+.collection-campaign-cta::after{animation-delay:-3.6s}
+@keyframes cta-inner-shine{0%,16%{transform:translateX(-65%);opacity:0}22%{opacity:1}45%{transform:translateX(65%);opacity:1}52%,100%{transform:translateX(65%);opacity:0}}
+:is(.hero-cta,.precious-ivory .pill,.cro-button,.look-approved-cta):hover{box-shadow:inset 0 0 15px #fff5,inset 0 1px 0 #fff8}
+@media(prefers-reduced-motion:reduce){:is(.hero-cta,.precious-ivory .pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{animation:none;opacity:0}}

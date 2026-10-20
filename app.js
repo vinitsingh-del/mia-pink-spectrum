@@ -20,7 +20,7 @@ const currency = value => '₹'+value.toLocaleString('en-IN');
 const icon = name => `<svg aria-hidden="true"><use href="#${name}"/></svg>`;
 const croProductImages={'Floral Spark Studs':'studs','Twilight Drop Pendant':'pendant','Petal Glow Ring':'ring','Bloom Bangle':'bangle','Layered Spark Ring':'ring','Halo Glow Earrings':'drops','Twist Luxe Pendant':'pendant','Petal Charm Bracelet':'bracelet'};
 const art = (crop,label,className='product-art') => croProductImages[label]?`<span class="${className}"><img src="assets/cro-${croProductImages[label]}.webp" alt="${label}" width="640" height="640" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>`: `<span class="${className}"><svg viewBox="${crop.join(' ')}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}"><image href="assets/reference-artwork.jpg" width="1024" height="1536"/></svg></span>`;
-const card = p => `<article class="product-card"><button class="product-main" data-product="${p.id}" aria-label="View ${p.name}, ${currency(p.price)}">${art(p.crop,p.name)}<span class="product-text"><span class="product-name">${p.name}</span><span class="product-price">${currency(p.price)}</span></span><span class="round-arrow">${icon('chevron')}</span></button></article>`;
+const card = p => `<article class="product-card"><button class="product-main" data-product="${p.id}" aria-label="View ${p.name}, ${currency(p.price)}">${art(p.crop,p.name)}<span class="product-text"><span class="product-name">${p.name}</span><span class="product-price">${currency(p.price)}</span></span></button></article>`;
 const festivalCategories=[
  {id:'necklaces',name:'Necklaces',image:'assets/necklaces.webp',products:[]},
  {id:'earrings',name:'Earrings',image:'assets/earrings.webp',products:['floral','halo']},
@@ -44,7 +44,7 @@ function renderGuide(mode=guideMode){
  guideMode=mode;
  document.querySelector('#cro-recipients').innerHTML=guideRelationships.map((g,i)=>`<button data-recipient="${i}" aria-pressed="${i===guideRecipient}">${g.title}${i===guideRecipient?' ×':''}</button>`).join('');
  document.querySelector('#cro-budgets').innerHTML=guideBudgets.map((g,i)=>`<button data-budget="${i}" aria-pressed="${i===guideBudget}">${g.title}</button>`).join('');
- guideGrid.innerHTML=guideRelationships.map((g,i)=>`<button class="cro-gift-card ${i===guideRecipient?'is-selected':''}" data-recipient="${i}" aria-pressed="${i===guideRecipient}"><img src="assets/cro-${g.image}.webp" alt="${g.title} — illustrative jewellery" width="640" height="640" loading="lazy"><span>${g.title} ${icon('arrow')}</span></button>`).join('');
+ guideGrid.innerHTML=guideRelationships.map((g,i)=>`<button class="cro-gift-card ${i===guideRecipient?'is-selected':''}" data-recipient="${i}" aria-pressed="${i===guideRecipient}"><img src="assets/cro-${g.image}.webp" alt="${g.title} — illustrative jewellery" width="640" height="640" loading="lazy"><span>${g.title}</span></button>`).join('');
  document.querySelector('#guide-subtitle').textContent=`Thoughtful picks ${guideRecipient<0?'for every bond':guideRelationships[guideRecipient].title.replace('For','for')}, within your budget.`;
  for(const name of ['relationship','budget']){const tab=document.querySelector('#guide-'+name+'-tab');tab.setAttribute('aria-selected',String(name===mode));tab.tabIndex=name===mode?0:-1;}
  document.querySelector('#guide-panel').setAttribute('aria-labelledby','guide-'+mode+'-tab');
@@ -54,7 +54,7 @@ function showMatchingGifts(){
  const g=guideRelationships[guideRecipient],b=guideBudgets[guideBudget];
  const items=products.filter(p=>(!g||g.ids.includes(p.id))&&(!b||(p.price>=b.min&&p.price<b.max)));
  if(items.length)collection('Matching gifts'+(g?' · '+g.title:''),items);
- else openDialog('Find your gift',`<p>No preview pieces match these filters. Try another budget or explore the full Mia gifting collection.</p><div class="dialog-actions"><a class="cro-button" href="https://www.miabytanishq.com/en_IN/mia-gifting">Explore gifts on Mia ${icon('arrow')}</a></div>`);
+ else openDialog('Find your gift',`<p>No preview pieces match these filters. Try another budget or explore the full Mia gifting collection.</p><div class="dialog-actions"><a class="cro-button" href="https://www.miabytanishq.com/en_IN/mia-gifting">Explore gifts on Mia</a></div>`);
 }
 document.querySelector('#gifting-guide').addEventListener('click',e=>{
  const r=e.target.closest('[data-recipient]'),b=e.target.closest('[data-budget]');
@@ -84,7 +84,7 @@ const selectedPieces={glow:new Set(['floral','twilight']),petal:new Set(['floral
 const pieceLabels={floral:'Studs',twilight:'Pendant',petal:'Ring',twist:'Pendant',charm:'Bracelet'};
 function renderBundles(){
  const descriptions=['Classic sparkle for your celebrations.','Delicate details, endless charm.','Elegant pieces for a lasting glow.'];
- document.querySelector('#bundles-grid').innerHTML=bundleSets.map((set,i)=>`<article class="cro-set-card ${set.id===activeBundle?'is-active':''}" id="bundle-${set.id}" data-bundle="${set.id}"><h3>${set.name}</h3><p>${descriptions[i]}</p><div class="cro-pieces">${set.products.map(id=>`<label class="cro-piece"><img src="${bundleAssets[id]}" alt="${byId(id).name} — illustrative artwork" width="640" height="640" loading="lazy"><span><input type="checkbox" data-piece="${id}" data-set="${set.id}" ${selectedPieces[set.id].has(id)?'checked':''}><span>${pieceLabels[id]}<strong>${currency(byId(id).price)}</strong></span></span></label>`).join('')}</div><div class="cro-size-note">${set.id==='petal'?'<button data-bundle-size="petal">Ring size required ⓘ</button>':''}</div><div class="cro-set-total"><span>Set total</span><strong>${currency([...selectedPieces[set.id]].reduce((v,id)=>v+byId(id).price,0))}</strong></div><button class="cro-button" data-bundle-view="${set.id}">Choose this set ${icon('arrow')}</button><button class="cro-single" data-single="${set.id}">Buy one piece ${icon('arrow')}</button></article>`).join('');
+ document.querySelector('#bundles-grid').innerHTML=bundleSets.map((set,i)=>`<article class="cro-set-card ${set.id===activeBundle?'is-active':''}" id="bundle-${set.id}" data-bundle="${set.id}"><h3>${set.name}</h3><p>${descriptions[i]}</p><div class="cro-pieces">${set.products.map(id=>`<label class="cro-piece"><img src="${bundleAssets[id]}" alt="${byId(id).name} — illustrative artwork" width="640" height="640" loading="lazy"><span><input type="checkbox" data-piece="${id}" data-set="${set.id}" ${selectedPieces[set.id].has(id)?'checked':''}><span>${pieceLabels[id]}<strong>${currency(byId(id).price)}</strong></span></span></label>`).join('')}</div><div class="cro-size-note">${set.id==='petal'?'<button data-bundle-size="petal">Ring size required ⓘ</button>':''}</div><div class="cro-set-total"><span>Set total</span><strong>${currency([...selectedPieces[set.id]].reduce((v,id)=>v+byId(id).price,0))}</strong></div><button class="cro-button" data-bundle-view="${set.id}">Choose this set</button><button class="cro-single" data-single="${set.id}">Buy one piece</button></article>`).join('');
 }
 document.querySelector('#bundles-grid').addEventListener('change',e=>{
  if(!e.target.matches('[data-piece]'))return;
@@ -149,7 +149,7 @@ case 'all':collection('Lightscapes by Mia',products);break;
 case 'latest-gold':collection('Gold Jewellery',products.filter(p=>['floral','twilight','bloom'].includes(p.id)));break;
 case 'latest-diamond':collection('Diamond Jewellery',products);break;
 case 'look':collection('Complete the Look',products.filter(p=>['floral','twilight','bloom','charm','petal'].includes(p.id)));break;
-case 'festival':openDialog('The Festival Edit',`<div class="category-menu">${festivalCategories.map(c=>`<button data-category="${c.id}"><img src="${c.image}" alt="${c.name}"><span>${c.name} →</span></button>`).join('')}</div>`);break;
+case 'festival':openDialog('The Festival Edit',`<div class="category-menu">${festivalCategories.map(c=>`<button data-category="${c.id}"><img src="${c.image}" alt="${c.name}"><span>${c.name}</span></button>`).join('')}</div>`);break;
 case 'gifts':collection('Gifts for every celebration',products);break;
 case 'wishlist':showWishlist();break;
 case 'bag':showBag();break;
