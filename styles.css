@@ -1228,3 +1228,12 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .cro-pooja .cro-coin-copy h3{font-size:clamp(17px,4.7vw,21px);min-height:0;justify-content:flex-start}
  .pooja-shopping-note{font-size:11px;gap:4px;text-align:center;flex-direction:column;padding-top:10px}
 }
+
+/* Original coin cutouts and centred editorial labels, desktop and mobile. */
+.cro-pooja .cro-coin-image{background:transparent;border:0;border-radius:50%;overflow:visible;box-shadow:none}
+.cro-pooja .cro-coin-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:none;border:0;border-radius:0;filter:drop-shadow(0 3px 3px rgba(119,76,16,.16))}
+.cro-sets .cro-heading,.cro-guide .cro-heading{text-align:center}
+.cro-sets .cro-heading h2,.cro-guide .cro-heading h2,.cro-guide .cro-heading p{max-width:100%;margin-left:auto;margin-right:auto}
+.cro-set-card>h3,.cro-set-card>p{text-align:center;width:100%}
+.utilities .utility-icon{width:90px;height:76px;flex:none}
+@media(max-width:700px){.utilities .utility-icon{width:72px;height:64px}}
