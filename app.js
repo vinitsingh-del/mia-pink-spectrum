@@ -207,7 +207,8 @@ if(typeof ResizeObserver==='function'){
 // Jewellery anchors use source-image pixels, not percentages of the cropped panel.
 // Keep the campaign, image crop and label sizes unchanged at every breakpoint.
 const lookPhoto=document.querySelector('.look-photo');
-const lookModel=lookPhoto.querySelector('.look-model');
+const lookModel=lookPhoto?.querySelector('.look-model');
+if(lookPhoto && lookModel){
 const lookAnchors=[
  ['earrings',506,300],
  ['necklace',543,484],
@@ -257,3 +258,5 @@ if(typeof ResizeObserver==='function'){
 }
 if(document.fonts)document.fonts.ready.then(alignLookPointers);
 alignLookPointers();
+
+}
