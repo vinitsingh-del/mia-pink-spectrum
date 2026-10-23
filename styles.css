@@ -1202,3 +1202,29 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .look-approved-copy p{font-size:var(--section-subtitle);line-height:1.4}
 }
 @media(prefers-reduced-motion:reduce){.hero-classic .diamond-glint{animation:none;opacity:0}}
+
+/* PDF follow-up: scoped trust, Pooja and utility refinements. */
+.cro-pooja .cro-heading{text-align:center;min-height:0;padding-bottom:6px}
+.cro-pooja .cro-heading h2,.cro-pooja .cro-heading p{max-width:100%;margin-left:auto;margin-right:auto}
+.cro-pooja .cro-coins{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+.cro-pooja .cro-coin-image{flex:none;position:relative;width:clamp(125px,13vw,190px);height:clamp(125px,13vw,190px);max-width:100%;aspect-ratio:1;border-radius:50%;margin:auto;overflow:hidden;border:1px solid #eacdb7}
+.cro-pooja .cro-coin-image img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain;border:0;border-radius:0;box-shadow:none;transform:scale(1.65)}
+.cro-pooja .cro-coin-copy{margin-top:auto}
+.cro-pooja .cro-coin-copy h3{font-size:clamp(17px,1.45vw,22px);min-height:2.3em;display:flex;align-items:center;justify-content:center}
+.pooja-shopping-note{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 0 0;border-top:1px solid #fff5ed50;font:400 12px/1.4 var(--sans);color:#fff8ee}
+.pooja-shopping-note a{text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.utilities .utility-icon{width:64px;height:64px}
+@media(min-width:701px){.cro-pooja .cro-coin{justify-content:center;padding:16px 12px}.cro-pooja .cro-coin-copy{padding-top:10px}}
+@media(min-width:701px) and (max-width:1050px){.cro-pooja{height:auto;min-height:0}.cro-pooja .cro-coins{grid-template-columns:repeat(2,minmax(0,1fr))}.cro-pooja .cro-coin-image{width:145px;height:145px}}
+@media(max-width:700px){
+ .trust{grid-template-columns:repeat(4,minmax(0,1fr));min-height:74px;padding:8px 3px;gap:0}
+ .trust>div{flex-direction:column;gap:5px;justify-content:flex-start;padding:2px 4px;min-height:56px;font-size:9px;line-height:1.2;text-align:center;border:0!important}
+ .trust>div:not(:last-child){border-right:1px solid #dec3c5!important}
+ .trust>div svg,.trust .trust-mark{width:22px;height:22px;min-width:22px}
+ .trust>div span,.trust>div a{max-width:90px;font-size:9px;line-height:1.2}
+ .cro-pooja .cro-coins{grid-template-columns:1fr;gap:10px}
+ .cro-pooja .cro-coin-image{width:100%;height:auto;max-width:115px;margin:0;aspect-ratio:1}
+ .cro-pooja .cro-coin-copy{margin:0;text-align:left}
+ .cro-pooja .cro-coin-copy h3{font-size:clamp(17px,4.7vw,21px);min-height:0;justify-content:flex-start}
+ .pooja-shopping-note{font-size:11px;gap:4px;text-align:center;flex-direction:column;padding-top:10px}
+}
