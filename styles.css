@@ -1237,3 +1237,10 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 .cro-set-card>h3,.cro-set-card>p{text-align:center;width:100%}
 .utilities .utility-icon{width:90px;height:76px;flex:none}
 @media(max-width:700px){.utilities .utility-icon{width:72px;height:64px}}
+
+/* Focused glass and alignment refinement — 23 October */
+.utilities .utility{background:linear-gradient(125deg,rgba(255,255,255,.32),rgba(255,245,235,.16));border:1px solid rgba(255,255,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 6px 18px rgba(141,0,59,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#790b38}
+.cro-guide-controls{justify-content:center}
+.cro-guide #cro-recipients,.cro-guide #cro-budgets{justify-content:center;flex-wrap:wrap}
+.mia-promises #promises-title{text-align:center;width:100%}
+@media(max-width:700px){.cro-guide #cro-recipients{justify-content:center}.cro-guide #cro-budgets button{flex:0 1 auto}.cro-guide #cro-budgets button:last-child{flex:0 1 auto}}
