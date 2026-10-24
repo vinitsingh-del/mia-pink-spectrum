@@ -1313,3 +1313,7 @@ body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{a
 
 /* Equal-height frosted promise cards retain the existing grid. */
 .promise-card{border-radius:12px;height:100%}
+
+/* Keep the new glass View All surface clear of the collection title. */
+.latest-heading .shop-link{width:auto}
+@media(max-width:700px){.latest-heading{display:flex;flex-direction:column;align-items:center;gap:8px;padding-bottom:0;min-height:76px}.latest-heading .shop-link{position:static;align-self:center;min-height:32px}}
