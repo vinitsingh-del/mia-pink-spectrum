@@ -1355,3 +1355,10 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 }
 
 @media(prefers-reduced-motion:reduce){.hero-classic .diamond-glint{animation:none;opacity:0}}
+
+/* Centre only the requested Precious, Every Day mobile headings and subtitle. */
+@media(max-width:700px){
+ .precious-ivory .offer-copy>.campaign-kicker,
+ .precious-ivory .offer-copy>h2,
+ .precious-ivory .offer-copy>p{align-self:center;text-align:center;width:100%}
+}
