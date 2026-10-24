@@ -1362,3 +1362,13 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .precious-ivory .offer-copy>h2,
  .precious-ivory .offer-copy>p{align-self:center;text-align:center;width:100%}
 }
+
+/* Spacing polish: preserve existing section gaps, layout, image framing and alignment. */
+.cro-heading p{margin-top:8px}
+@media(min-width:701px){
+ .festival-edit,.latest-collections,.mia-promises{padding:20px 24px}
+}
+@media(max-width:700px){
+ .cro-heading p{margin-top:6px}
+ .cro-set-card>p{margin-top:6px;margin-bottom:10px}
+}
