@@ -1248,13 +1248,13 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 /* Hero-only finish: softer photography, restrained jewellery glints, clear mobile CTA. */
 .hero-classic .hero-art img{filter:brightness(.94) saturate(.9) contrast(.92) blur(.18px)}
 .hero-classic .hero-diamond-shine svg>g{display:none}
-.hero-classic .hero-diamond-shine svg>g:is(:nth-child(1),:nth-child(5),:nth-child(6),:nth-child(8)){display:inline}
-.hero-classic .diamond-glint{animation:hero-soft-glint 12s ease-in-out infinite;opacity:0}
+.hero-classic .hero-diamond-shine svg>g:is(:nth-child(1),:nth-child(5),:nth-child(8)){display:inline}
+.hero-classic .diamond-glint{animation:hero-soft-glint 7s ease-in-out infinite;opacity:0}
 .hero-classic .hero-diamond-shine svg>g:nth-child(1) .diamond-glint{animation-delay:0s}
 .hero-classic .hero-diamond-shine svg>g:nth-child(5) .diamond-glint{animation-delay:-3s}
 .hero-classic .hero-diamond-shine svg>g:nth-child(6) .diamond-glint{animation-delay:-6s}
 .hero-classic .hero-diamond-shine svg>g:nth-child(8) .diamond-glint{animation-delay:-9s}
-@keyframes hero-soft-glint{0%,65%,100%{opacity:0;transform:scale(.25)}78%{opacity:.32;transform:scale(.55)}90%{opacity:0;transform:scale(.3)}}
+@keyframes hero-soft-glint{0%,65%,100%{opacity:0;transform:scale(.25)}78%{opacity:.65;transform:scale(.7)}90%{opacity:0;transform:scale(.3)}}
 @media(max-width:700px){
  .hero-classic .hero-copy{display:flex;flex-direction:column;align-items:center;top:4cqw;gap:0}
  .hero-classic .hero-cta{position:relative;inset:auto;display:inline-flex;align-items:center;justify-content:center;flex:none;width:36cqw;min-width:124px;height:44px;min-height:44px;margin:4cqw auto 0;padding:0 18px;transform:none;line-height:1;font-size:11px}
@@ -1353,3 +1353,5 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .precious-ivory .offer-art{height:auto;aspect-ratio:1000/610;overflow:hidden}
  .precious-ivory .offer-art img{position:absolute;inset:auto 0 0;width:100%;height:auto;max-width:none;object-fit:contain}
 }
+
+@media(prefers-reduced-motion:reduce){.hero-classic .diamond-glint{animation:none;opacity:0}}
