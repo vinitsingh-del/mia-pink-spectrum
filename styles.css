@@ -1265,3 +1265,6 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 @media(max-width:700px){
  .hero-classic + .trust{position:relative;z-index:3;margin-top:-9vw}
 }
+
+/* Mobile Festival Edit: remove excess space below Shop All. */
+@media(max-width:700px){.festival-edit{padding-bottom:2px}}
