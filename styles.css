@@ -1290,7 +1290,7 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 .look-approved .look-point:focus-visible{outline:2px solid #ffe7a3;outline-offset:-18px}
 @keyframes gold-star-breathe{0%,100%{opacity:.85;filter:brightness(1)}50%{opacity:1;filter:brightness(1.2)}}
 /* Reusable cream-rose glass on shopping actions and trust surfaces. */
-body :is(.pill,.shop-link,.cro-button,.cro-coin-copy .cro-button,.look-approved-cta,.collection-campaign-cta,.dialog-actions button,.dialog-actions a,#newsletter-form button){background:linear-gradient(125deg,rgba(255,250,238,.88),rgba(255,218,233,.67));color:#a50043;border:1px solid rgba(255,255,245,.88);border-radius:99px;box-shadow:inset 0 2px 7px #fffc,inset 0 -2px 8px #ffaac355,0 2px 9px #a3124020;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:none}
+body :is(.pill,.shop-link,.cro-button,.cro-coin-copy .cro-button,.look-approved-cta,.collection-campaign-cta,.dialog-actions button,.dialog-actions a,.cro-single,.cro-price-link,#newsletter-form button){background:linear-gradient(125deg,rgba(255,250,238,.88),rgba(255,218,233,.67));color:#a50043;border:1px solid rgba(255,255,245,.88);border-radius:99px;box-shadow:inset 0 2px 7px #fffc,inset 0 -2px 8px #ffaac355,0 2px 9px #a3124020;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:none}
 body :is(.pill,.shop-link,.cro-button,.look-approved-cta,.collection-campaign-cta):hover{background:linear-gradient(125deg,#fff8edee,#ffdbe9db);box-shadow:inset 0 0 12px #fff9,0 2px 12px #a3124030}
 body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{animation:none;opacity:.24;transform:translateX(0)}
 .shop-link{padding-left:16px;padding-right:16px}
@@ -1310,3 +1310,6 @@ body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{a
  .look-approved-rail .look-rail-explore{display:none}
 }
 @media(prefers-reduced-motion:reduce){.look-point>span{animation:none}}
+
+/* Equal-height frosted promise cards retain the existing grid. */
+.promise-card{border-radius:12px;height:100%}
