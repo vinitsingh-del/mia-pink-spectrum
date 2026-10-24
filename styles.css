@@ -1283,7 +1283,7 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 .look-approved-diya{width:15%;height:17%;left:5.3%;bottom:1%}
 .look-approved-rail{position:relative;z-index:2;border:1px solid #fff9;border-radius:18px;background:linear-gradient(125deg,#fff5e8cc,#ffe2ed99);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 1px 6px #fff9;color:#aa0045}
 .look-approved-rail button{color:#aa0045;border-color:#c38e6c88}
-.look-approved .look-point{width:100px;height:100px;margin:0;padding:0;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;overflow:visible;border-radius:50%;font-size:0}
+.look-approved .look-point{width:140px;height:140px;margin:0;padding:0;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;overflow:visible;border-radius:50%;font-size:0}
 .look-approved .look-point::before,.look-approved .look-point::after{content:none;animation:none}
 .look-point>span{display:block;font:24px/1 Georgia;color:#ffdb75;text-shadow:0 0 2px #fff4c5,0 0 7px #ffd04e,0 0 12px #ffd04e88;animation:gold-star-breathe 4s ease-in-out infinite;pointer-events:none}
 .look-point:hover>span,.look-point:focus-visible>span{color:#fff1be;text-shadow:0 0 4px #fff9d5,0 0 12px #ffcb38}
