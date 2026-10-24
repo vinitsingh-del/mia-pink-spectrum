@@ -1268,3 +1268,45 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 
 /* Mobile Festival Edit: remove excess space below Shop All. */
 @media(max-width:700px){.festival-edit{padding-bottom:2px}}
+
+/* Selected Fine glass frame: live text, original campaign photo, responsive anchored stars. */
+.look-approved{position:relative;border:1px solid #fff4e9;border-radius:24px;box-shadow:inset 0 0 0 4px #fff7,0 0 0 3px #ffc5d455,0 6px 18px #9f144829;isolation:isolate}
+.look-approved::after{content:"";position:absolute;inset:5px;border:1px solid #fff9;border-radius:19px;box-shadow:inset 0 0 9px #fff8;pointer-events:none;z-index:4}
+.look-approved-scene{background:#e40059 url('assets/look-glass-backdrop.webp') center/cover}
+.look-approved-scene:after{background:linear-gradient(90deg,#df00548c 0%,#df005435 27%,transparent 48%)}
+.look-approved-photo{mask-image:linear-gradient(90deg,transparent,#000 18%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%)}
+.look-approved-copy{top:5.5%;left:5%;width:40%;padding:0}
+.look-approved-logo{width:10cqw;height:9cqw;margin-bottom:3.4cqw}
+.look-approved-copy h2{font:400 4.2cqw/1.04 var(--serif);letter-spacing:-.04em}
+.look-approved-copy p{font:400 1.5cqw/1.4 var(--sans);margin-top:1.4cqw}
+.look-approved-cta{font:400 2.2cqw/1.15 var(--serif);padding:1.15cqw 2.8cqw;margin-top:2cqw}
+.look-approved-diya{width:15%;height:17%;left:5.3%;bottom:1%}
+.look-approved-rail{position:relative;z-index:2;border:1px solid #fff9;border-radius:18px;background:linear-gradient(125deg,#fff5e8cc,#ffe2ed99);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 1px 6px #fff9;color:#aa0045}
+.look-approved-rail button{color:#aa0045;border-color:#c38e6c88}
+.look-approved .look-point{width:100px;height:100px;margin:0;padding:0;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;overflow:visible;border-radius:50%;font-size:0}
+.look-approved .look-point::before,.look-approved .look-point::after{content:none;animation:none}
+.look-point>span{display:block;font:24px/1 Georgia;color:#ffdb75;text-shadow:0 0 2px #fff4c5,0 0 7px #ffd04e,0 0 12px #ffd04e88;animation:gold-star-breathe 4s ease-in-out infinite;pointer-events:none}
+.look-point:hover>span,.look-point:focus-visible>span{color:#fff1be;text-shadow:0 0 4px #fff9d5,0 0 12px #ffcb38}
+.look-approved .look-point:focus-visible{outline:2px solid #ffe7a3;outline-offset:-18px}
+@keyframes gold-star-breathe{0%,100%{opacity:.85;filter:brightness(1)}50%{opacity:1;filter:brightness(1.2)}}
+/* Reusable cream-rose glass on shopping actions and trust surfaces. */
+body :is(.pill,.shop-link,.cro-button,.cro-coin-copy .cro-button,.look-approved-cta,.collection-campaign-cta,.dialog-actions button,.dialog-actions a,#newsletter-form button){background:linear-gradient(125deg,rgba(255,250,238,.88),rgba(255,218,233,.67));color:#a50043;border:1px solid rgba(255,255,245,.88);border-radius:99px;box-shadow:inset 0 2px 7px #fffc,inset 0 -2px 8px #ffaac355,0 2px 9px #a3124020;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:none}
+body :is(.pill,.shop-link,.cro-button,.look-approved-cta,.collection-campaign-cta):hover{background:linear-gradient(125deg,#fff8edee,#ffdbe9db);box-shadow:inset 0 0 12px #fff9,0 2px 12px #a3124030}
+body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{animation:none;opacity:.24;transform:translateX(0)}
+.shop-link{padding-left:16px;padding-right:16px}
+.trust,.promise-card{background:linear-gradient(125deg,#fff6e9ce,#ffe3ec9e);border:1px solid #fff9;box-shadow:inset 0 1px 7px #fffb,0 3px 12px #b2174020;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#792445}
+@media(max-width:700px){
+ .look-approved{height:clamp(440px,133.333vw,560px);grid-template-rows:minmax(0,1fr) 64px;border-radius:22px}
+ .look-approved-copy{top:16px;left:7%;width:86%;padding:0;text-align:center;z-index:2}
+ .look-approved-logo{width:62px;height:65px;object-position:center;margin:0 auto 12px}
+ .look-approved-copy h2{font-size:clamp(27px,7.8cqw,34px);line-height:1.08;letter-spacing:-.035em}
+ .look-approved-copy p{font-size:12px;line-height:1.4;margin-top:7px}
+ .look-approved-cta{display:inline-flex;min-height:44px;font-size:19px;line-height:1.1;padding:9px 25px;margin-top:13px}
+ .look-approved-photo{inset:205px 0 0;mask-image:linear-gradient(180deg,transparent,#000 12%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%)}
+ .look-approved-diya{display:none}
+ .look-approved-rail{grid-template-columns:repeat(3,1fr);grid-template-rows:24px 32px;padding:3px 8px;border-radius:16px}
+ .look-rail-intro{display:block;grid-column:1/-1;text-align:center;padding:0;font-size:12px;line-height:1.2}
+ .look-approved-rail button{font-size:13px;min-height:30px;padding:0 6px}
+ .look-approved-rail .look-rail-explore{display:none}
+}
+@media(prefers-reduced-motion:reduce){.look-point>span{animation:none}}
