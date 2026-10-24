@@ -1347,3 +1347,9 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 }
 @media(max-width:700px){.hero-classic .hero-cta{font-size:14px;font-weight:700}}
 @media(prefers-reduced-motion:reduce){.look-diya-flame{animation:none;will-change:auto}}
+
+/* Mobile-only poster trim: remove the marked top background, keep the full lower portrait. */
+@media(max-width:700px){
+ .precious-ivory .offer-art{height:auto;aspect-ratio:1000/610;overflow:hidden}
+ .precious-ivory .offer-art img{position:absolute;inset:auto 0 0;width:100%;height:auto;max-width:none;object-fit:contain}
+}
