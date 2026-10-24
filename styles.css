@@ -1260,3 +1260,8 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .hero-classic .hero-cta{position:relative;inset:auto;display:inline-flex;align-items:center;justify-content:center;flex:none;width:36cqw;min-width:124px;height:44px;min-height:44px;margin:4cqw auto 0;padding:0 18px;transform:none;line-height:1;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.hero-classic .diamond-glint{animation:none;opacity:0}}
+
+/* Mobile reference: lift trust bar onto the empty ribbon area of the hero. */
+@media(max-width:700px){
+ .hero-classic + .trust{position:relative;z-index:3;margin-top:-9vw}
+}
