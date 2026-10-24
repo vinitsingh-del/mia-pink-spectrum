@@ -1285,16 +1285,10 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 .look-approved-rail button{color:#aa0045;border-color:#c38e6c88}
 .look-approved .look-point{width:140px;height:140px;margin:0;padding:0;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;overflow:visible;border-radius:50%;font-size:0}
 .look-approved .look-point::before,.look-approved .look-point::after{content:none;animation:none}
-.look-point>span{display:block;font:24px/1 Georgia;color:#ffdb75;text-shadow:0 0 2px #fff4c5,0 0 7px #ffd04e,0 0 12px #ffd04e88;animation:gold-star-breathe 4s ease-in-out infinite;pointer-events:none}
+.look-point>span{display:block;font:24px/1 Georgia;color:#ffdb75;text-shadow:0 0 2px #fff4c5,0 0 7px #ffd04e,0 0 12px #ffd04e88;animation:gold-star-breathe 6s ease-in-out infinite;pointer-events:none}
 .look-point:hover>span,.look-point:focus-visible>span{color:#fff1be;text-shadow:0 0 4px #fff9d5,0 0 12px #ffcb38}
 .look-approved .look-point:focus-visible{outline:2px solid #ffe7a3;outline-offset:-18px}
-@keyframes gold-star-breathe{0%,100%{opacity:.85;filter:brightness(1)}50%{opacity:1;filter:brightness(1.2)}}
-/* Reusable cream-rose glass on shopping actions and trust surfaces. */
-body :is(.pill,.shop-link,.cro-button,.cro-coin-copy .cro-button,.look-approved-cta,.collection-campaign-cta,.dialog-actions button,.dialog-actions a,.cro-single,.cro-price-link,#newsletter-form button){background:linear-gradient(125deg,rgba(255,250,238,.88),rgba(255,218,233,.67));color:#a50043;border:1px solid rgba(255,255,245,.88);border-radius:99px;box-shadow:inset 0 2px 7px #fffc,inset 0 -2px 8px #ffaac355,0 2px 9px #a3124020;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:none}
-body :is(.pill,.shop-link,.cro-button,.look-approved-cta,.collection-campaign-cta):hover{background:linear-gradient(125deg,#fff8edee,#ffdbe9db);box-shadow:inset 0 0 12px #fff9,0 2px 12px #a3124030}
-body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{animation:none;opacity:.24;transform:translateX(0)}
-.shop-link{padding-left:16px;padding-right:16px}
-.trust,.promise-card{background:linear-gradient(125deg,#fff6e9ce,#ffe3ec9e);border:1px solid #fff9;box-shadow:inset 0 1px 7px #fffb,0 3px 12px #b2174020;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#792445}
+@keyframes gold-star-breathe{0%,100%{opacity:.2;filter:brightness(.85)}45%,55%{opacity:1;filter:brightness(1.15)}}
 @media(max-width:700px){
  .look-approved{height:clamp(440px,133.333vw,560px);grid-template-rows:minmax(0,1fr) 64px;border-radius:22px}
  .look-approved-copy{top:16px;left:7%;width:86%;padding:0;text-align:center;z-index:2}
@@ -1311,9 +1305,28 @@ body :is(.pill,.cro-button,.look-approved-cta,.collection-campaign-cta)::after{a
 }
 @media(prefers-reduced-motion:reduce){.look-point>span{animation:none}}
 
-/* Equal-height frosted promise cards retain the existing grid. */
-.promise-card{border-radius:12px;height:100%}
+
 
 /* Keep the new glass View All surface clear of the collection title. */
 .latest-heading .shop-link{width:auto}
 @media(max-width:700px){.latest-heading{display:flex;flex-direction:column;align-items:center;gap:8px;padding-bottom:0;min-height:76px}.latest-heading .shop-link{position:static;align-self:center;min-height:32px}}
+
+/* PDF feedback: consistent two-line benefits, TATA last, mobile placement and title. */
+.trust .trust-line{display:block;white-space:nowrap}
+.trust>div>span,.trust>div>a{line-height:1.25;text-align:center}
+.hero-product-links{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero-product-links svg{display:block;width:100%;height:100%;stroke:none;overflow:hidden}
+.hero-product-links a{pointer-events:all;cursor:pointer}
+.hero-product-links path{fill:transparent;stroke:none}
+.hero-product-links a:focus-visible{outline:none}
+.hero-product-links a:focus-visible path{stroke:#fff2bd;stroke-width:4;fill:#fff2bd12}
+.hero-product-links .hero-links-mobile{display:none}
+@media(max-width:700px){
+ .hero-classic + .trust{margin-top:-18vw}
+ .trust>div>span,.trust>div>a{max-width:none;font-size:clamp(8px,2.3vw,10px)}
+ .more .section-heading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+ .more .section-heading h2{width:100%;text-align:center}
+ .more .section-heading .shop-link{position:static;align-self:center;width:auto}
+ .hero-product-links .hero-links-desktop{display:none}
+ .hero-product-links .hero-links-mobile{display:block}
+}
