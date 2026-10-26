@@ -1372,3 +1372,10 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
  .cro-heading p{margin-top:6px}
  .cro-set-card>p{margin-top:6px;margin-bottom:10px}
 }
+
+/* Requested desktop label alignment; mobile styling remains unchanged. */
+@media(min-width:701px){
+ .look-approved-rail .look-rail-intro{text-align:center;padding-inline:0}
+ .festival-edit .festival-label{justify-content:center;text-align:center;padding-inline:0}
+ .cro-guide .cro-gift-card>span{justify-content:center;text-align:center}
+}
