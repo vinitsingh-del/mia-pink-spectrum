@@ -1335,7 +1335,7 @@ body,button,input,select,p,.collection-eyebrow,.campaign-kicker,.promise-label,.
 @media(min-width:701px){
  .look-approved-copy{text-align:center}
  .look-approved-logo{margin-left:auto;margin-right:auto;object-position:center}
- .look-approved-diya{left:17.5%;overflow:visible}
+ .look-approved-diya{left:16.5%;bottom:10%;overflow:visible}
  .look-diya-flame{transform-origin:300px 220px;animation:look-flame-flicker 1.6s ease-in-out infinite;will-change:transform,filter}
 }
 @keyframes look-flame-flicker{
