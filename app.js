@@ -51,6 +51,12 @@ function renderGuide(mode=guideMode){
  document.querySelector('.cro-guide-controls').classList.toggle('budget-first',mode==='budget');
 }
 function showMatchingGifts(){
+ // Recipient selections have no verified brand filter; do not imply an exact match.
+ if(guideRecipient<0 && guideBudget<2){
+  const paths={'-1':'mia-gifting',0:'mia-gifting?pmax=10000&pmin=0',1:'mia-gifting?pmax=20000&pmin=10000'};
+  window.location.assign('https://www.miabytanishq.com/en_IN/'+paths[guideBudget]);return;
+ }
+
  const g=guideRelationships[guideRecipient],b=guideBudgets[guideBudget];
  const items=products.filter(p=>(!g||g.ids.includes(p.id))&&(!b||(p.price>=b.min&&p.price<b.max)));
  if(items.length)collection('Matching gifts'+(g?' · '+g.title:''),items);
@@ -144,9 +150,11 @@ function list(items,kind){return `<div class="dialog-list">${items.map((p,i)=>`<
 function collection(title,items){openDialog(title,list(items))}
 function showBag(){const items=state.bag.map(byId);openDialog('Your bag',items.length?list(items,'bag')+`<p class="detail-price">Total ${currency(items.reduce((a,p)=>a+p.price,0))}</p><p class="dialog-note">Preview bag only. Checkout is not connected; no order or payment will be placed.</p>`:'<p>Your bag is empty. Select a piece to see its details and add it here.</p><div class="dialog-actions"><button data-action="all">Explore jewellery</button></div>')}
 function showWishlist(){const items=state.wish.map(byId);openDialog('Your wishlist',items.length?list(items,'wish'):'<p>Your saved pieces will appear here.</p><div class="dialog-actions"><button data-action="all">Explore jewellery</button></div>')}
-function showCategory(id){const category=festivalCategories.find(c=>c.id===id);if(!category)return;openDialog(category.name,`<div class="category-preview"><img src="${category.image}" alt="${category.name} — The Festival Edit"></div>`+(category.products.length?list(category.products.map(byId)):'<p class="dialog-note">A preview of our necklace edit. Product details and prices are not yet available for this collection.</p>'))}
-function action(name){switch(name){
-case 'menu':openDialog('Explore Mia','<nav class="menu-links"><a href="#more">New In</a><a href="#gifts">Gifts</a><a href="#featured">Collections</a><a href="#offers">Festive Edit</a><a href="#" data-action="stores">Stores</a></nav>');break;
+function showCategory(id){if(festivalCategories.some(c=>c.id===id))window.location.assign('https://www.miabytanishq.com/en_IN/'+id);}
+// Verified brand destinations; keep unmapped product and service previews intact.
+const miaDestinations={all:'jewellery',collections:'collections',look:'collections/lightscapes',festival:'collections/lightscapes',gifts:'mia-gifting',giftcard:'gift-card','latest-gold':'plain-gold-jewellery','latest-diamond':'diamond-jewellery'};
+function action(name){if(miaDestinations[name]){window.location.assign('https://www.miabytanishq.com/en_IN/'+miaDestinations[name]);return;}switch(name){
+case 'menu':openDialog('Explore Mia','<nav class="menu-links"><a href="#more">New In</a><a href="https://www.miabytanishq.com/en_IN/mia-gifting">Gifts</a><a href="https://www.miabytanishq.com/en_IN/collections">Collections</a><a href="https://www.miabytanishq.com/en_IN/collections/lightscapes">Festive Edit</a><a href="#" data-action="stores">Stores</a></nav>');break;
 case 'all':collection('Lightscapes by Mia',products);break;
 case 'latest-gold':collection('Gold Jewellery',products.filter(p=>['floral','twilight','bloom'].includes(p.id)));break;
 case 'latest-diamond':collection('Diamond Jewellery',products);break;
